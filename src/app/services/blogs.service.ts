@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { comments, entry, likes, previews } from 'testing';
+import { comments, likes } from 'testing';
+
 import { BlogComment, BlogEntry, BlogLike, BlogPreview, User } from '../model';
 
 @Injectable({ providedIn: 'root' })
 export class BlogsService {
-  private baseUrl = 'http://localhost:3000/';
+  private baseUrl = 'https://localhost:7202/Blogs';
 
   constructor(private http: HttpClient) {}
 
@@ -15,7 +16,6 @@ export class BlogsService {
   }
 
   public loadBlogPreviews(top: number = 5): Observable<BlogPreview[]> {
-    return of(previews);
     return this.http.get<BlogPreview[]>(`${this.baseUrl}/blogs?top=${top}`);
   }
 
@@ -27,7 +27,6 @@ export class BlogsService {
   }
 
   public loadBlogEntry(blogId: number): Observable<BlogEntry> {
-    return of(entry);
     return this.http.get<BlogEntry>(`${this.baseUrl}/blogs/${blogId}`);
   }
 
@@ -38,12 +37,14 @@ export class BlogsService {
 
   public saveBlogEntry(
     title: string,
-    content: string,
+    text: string,
     userId: number
   ): Observable<void> {
-    console.log('Saving blog entry', title, content);
-    return of();
-    return this.http.post<void>(`${this.baseUrl}/blogs`, { content, title });
+    return this.http.post<void>(`${this.baseUrl}/blogs`, {
+      text,
+      title,
+      userId,
+    });
   }
 
   public addComment(

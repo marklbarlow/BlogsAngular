@@ -7,7 +7,7 @@ export const previews: BlogPreview[] = [
     timestamp: new Date().toISOString(),
     title: 'Proin ac congue lorem, rhoncus',
     userId: 1,
-    userName: 'John Smith',
+    username: 'John Smith',
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const previews: BlogPreview[] = [
     timestamp: new Date().toISOString(),
     title: 'Donec euismod est vitae nisi',
     userId: 1,
-    userName: 'John Smith',
+    username: 'John Smith',
   },
   {
     id: 3,
@@ -23,6 +23,6 @@ export const previews: BlogPreview[] = [
     timestamp: new Date().toISOString(),
     title: 'Maecenas quam urna, auctor eu',
     userId: 1,
-    userName: 'John Smith',
+    username: 'John Smith',
   },
 ];

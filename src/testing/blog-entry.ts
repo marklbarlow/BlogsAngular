@@ -6,5 +6,5 @@ export const entry: BlogEntry = {
   timestamp: new Date().toISOString(),
   title: 'Proin ac congue lorem, rhoncus',
   userId: 1,
-  userName: 'John Smith',
+  username: 'John Smith',
 };

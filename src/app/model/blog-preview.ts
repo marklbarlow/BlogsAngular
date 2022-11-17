@@ -4,5 +4,5 @@ export interface BlogPreview {
   timestamp: string;
   title: string;
   userId: number;
-  userName: string;
+  username: string;
 }

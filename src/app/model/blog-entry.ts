@@ -7,5 +7,5 @@ export interface BlogEntry {
   timestamp: string;
   title: string;
   userId: number;
-  userName: string;
+  username: string;
 }

@@ -2,7 +2,7 @@
   <ng-container *ngIf="entry$ | async as entry">
     <h1>{{ entry.title }}</h1>
     <span class="grey">
-      Posted by {{ entry.userName }} at
+      Posted by {{ entry.username }} at
       {{ entry.timestamp | date: 'h:mm:ss a on dd/MM/yyyy' }}
     </span>
 

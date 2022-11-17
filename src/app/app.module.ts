@@ -11,6 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { QuillModule } from 'ngx-quill';
 
@@ -24,6 +25,7 @@ import {
   PageNotFoundComponent,
   ViewBlogComponent,
 } from './components';
+import { reducers } from './store';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import {
     MatListModule,
     MatToolbarModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(reducers),
+    StoreRouterConnectingModule.forRoot(),
     QuillModule.forRoot(),
   ],
   providers: [],
