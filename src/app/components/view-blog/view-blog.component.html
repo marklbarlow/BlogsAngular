@@ -1,0 +1,15 @@
+<section fxLayout="column" fxLayoutGap="10px">
+  <ng-container *ngIf="entry$ | async as entry">
+    <h1>{{ entry.title }}</h1>
+    <span class="grey">
+      Posted by {{ entry.userName }} at
+      {{ entry.timestamp | date: 'h:mm:ss a on dd/MM/yyyy' }}
+    </span>
+
+    <quill-view [content]="entry.text"></quill-view>
+  </ng-container>
+
+  <app-likes [likes]="(likes$ | async)!"></app-likes>
+
+  <app-comments [comments]="(comments$ | async)!"> </app-comments>
+</section>

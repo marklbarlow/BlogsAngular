@@ -1,0 +1,24 @@
+<section fxFlex fxLayout="column" fxLayoutGap="10px">
+  <h1>Create Blog Post</h1>
+
+  <mat-form-field [formControl]="title" ngDefaultControl>
+    <mat-label>Title</mat-label>
+    <input matInput placeholder="Enter your blog title" />
+  </mat-form-field>
+
+  <quill-editor
+    [styles]="{ height: '300px' }"
+    [formControl]="editor"
+  ></quill-editor>
+
+  <div fxLayoutAlign="end center">
+    <button
+      mat-raised-button
+      color="accent"
+      [disabled]="formGroup.invalid"
+      (click)="onSave()"
+    >
+      Save
+    </button>
+  </div>
+</section>

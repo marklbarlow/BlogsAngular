@@ -1,0 +1,14 @@
+:host {
+  height: 100vh;
+}
+
+.content-host {
+  overflow: auto;
+  padding: 10px;
+}
+
+.home {
+  &:hover {
+    cursor: pointer;
+  }
+}

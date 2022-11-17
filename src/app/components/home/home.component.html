@@ -1,0 +1,21 @@
+<section>
+  <h1>Read the latest blog entries!</h1>
+
+  <mat-nav-list>
+    <mat-list-item
+      *ngFor="let preview of previews$ | async"
+      [routerLink]="['/view-blog', preview.id]"
+    >
+      <div fxLayout="column" [style.margin]="'10px'">
+        <span matListItemTitle>{{ preview.title }}</span>
+        <small>
+          {{ preview.text }}
+        </small>
+        <small fxLayout="row" class="grey">
+          by {{ preview.userName }} at
+          {{ preview.timestamp | date: 'h:mm:ss a on dd/MM/yyyy' }}
+        </small>
+      </div>
+    </mat-list-item>
+  </mat-nav-list>
+</section>

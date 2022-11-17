@@ -1,0 +1,10 @@
+<div *ngIf="comments">
+  <h3>Comments</h3>
+  <div fxLayout="column" *ngFor="let comment of comments">
+    <span>{{ comment.text }}</span>
+    <small fxLayout="row" class="grey">
+      by {{ comment.userName }} at
+      {{ comment.timestamp | date: 'h:mm:ss a on dd/MM/yyyy' }}
+    </small>
+  </div>
+</div>
