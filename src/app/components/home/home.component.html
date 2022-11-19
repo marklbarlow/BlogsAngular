@@ -8,9 +8,6 @@
     >
       <div fxLayout="column" [style.margin]="'10px'">
         <span matListItemTitle>{{ preview.title }}</span>
-        <small>
-          {{ preview.text }}
-        </small>
         <small fxLayout="row" class="grey">
           by {{ preview.username }} at
           {{ preview.timestamp | date: 'h:mm:ss a on dd/MM/yyyy' }}
