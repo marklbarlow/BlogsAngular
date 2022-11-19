@@ -7,7 +7,7 @@ import { BlogComment, BlogEntry, BlogLike, BlogPreview, User } from '../model';
 
 @Injectable({ providedIn: 'root' })
 export class BlogsService {
-  private baseUrl = 'https://localhost:7202/Blogs';
+  private baseUrl = 'https://blogsapi.azurewebsites.net/Blogs'
 
   constructor(private http: HttpClient) {}
 
