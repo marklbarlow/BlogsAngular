@@ -31,7 +31,6 @@ export class BlogsService {
   }
 
   public loadBlogLikes(blogId: number): Observable<BlogLike[]> {
-    return of(likes);
     return this.http.get<BlogLike[]>(`${this.baseUrl}/blogs/${blogId}/likes`);
   }
 
@@ -60,14 +59,14 @@ export class BlogsService {
 
   public addLike(blogId: number, userId: number): Observable<BlogEntry> {
     return this.http.put<BlogEntry>(
-      `${this.baseUrl}/${blogId}/like/${userId}`,
+      `${this.baseUrl}/blogs/${blogId}/likes/${userId}`,
       {}
     );
   }
 
   public removeLike(blogId: number, userId: number): Observable<BlogEntry> {
     return this.http.delete<BlogEntry>(
-      `${this.baseUrl}/${blogId}/like/${userId}`
+      `${this.baseUrl}/blogs/${blogId}/likes/${userId}`
     );
   }
 }

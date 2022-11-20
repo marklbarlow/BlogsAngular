@@ -5,6 +5,17 @@
       Create Blog Entry
     </button>
     <span fxFlex></span>
+    <span>Impersonating user:</span>
+    <mat-form-field appearance="fill">
+      <mat-select [formControl]="selectedUser">
+        <mat-option
+          *ngFor="let user of availableUsers$ | async; trackBy: trackUsers"
+          [value]="user"
+        >
+          {{ user.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <a
       mat-raised-button
       color="accent"
