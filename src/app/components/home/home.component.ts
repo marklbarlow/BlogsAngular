@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { BlogPreview } from 'app/model';
 
 import { HomeStore } from './home.store';
 
@@ -16,5 +17,9 @@ export class HomeComponent implements OnInit {
 
   public ngOnInit(): void {
     this.store.loadPreviews();
+  }
+
+  public trackPreviews(_: number, preview: BlogPreview): number {
+    return preview.id;
   }
 }

@@ -3,7 +3,7 @@
 
   <mat-nav-list>
     <mat-list-item
-      *ngFor="let preview of previews$ | async"
+      *ngFor="let preview of previews$ | async; trackBy: trackPreviews"
       [routerLink]="['/view-blog', preview.id]"
     >
       <div fxLayout="column" [style.margin]="'10px'">
