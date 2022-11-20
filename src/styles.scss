@@ -31,3 +31,7 @@ $my-theme: mat.define-light-theme(
 .grey {
   color: rgba(0, 0, 0, 0.54);
 }
+
+button {
+  text-transform: uppercase;
+}
