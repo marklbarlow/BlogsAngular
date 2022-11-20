@@ -1,9 +1,9 @@
 <section fxFlex fxLayout="column" fxLayoutGap="8px">
   <h1>Create Blog Post</h1>
 
-  <mat-form-field [formControl]="title" ngDefaultControl>
+  <mat-form-field>
     <mat-label>Title</mat-label>
-    <input matInput placeholder="Enter your blog title" />
+    <input matInput placeholder="Enter your blog title" [formControl]="title" />
   </mat-form-field>
 
   <quill-editor
