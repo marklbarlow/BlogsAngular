@@ -1,11 +1,17 @@
 <div fxFlex fxLayout="column">
-  <mat-toolbar color="primary" fxLayoutGap="10px">
+  <mat-toolbar color="primary" fxLayoutGap="8px">
     <span class="home" [routerLink]="['/']">Blogs</span>
     <button mat-raised-button color="accent" [routerLink]="['/edit-blog']">
       Create Blog Entry
     </button>
     <span fxFlex></span>
-    <mat-icon>github</mat-icon>
+    <a
+      mat-raised-button
+      color="accent"
+      href="https://gray-beach-08c130f03.2.azurestaticapps.net"
+    >
+      View React Version
+    </a>
   </mat-toolbar>
 
   <div fxFlex class="content-host mat-typography">
