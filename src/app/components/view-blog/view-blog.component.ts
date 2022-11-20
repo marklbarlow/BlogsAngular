@@ -22,7 +22,7 @@ export class ViewBlogComponent implements OnInit {
   }
 
   public onCommentAdded(text: string): void {
-    console.log('Added!', text);
+    this.store.addComment(text);
   }
 
   public onLikeToggled(): void {

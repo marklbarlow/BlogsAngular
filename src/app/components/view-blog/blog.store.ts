@@ -22,6 +22,22 @@ export class BlogStore extends ComponentStore<BlogState> {
   public readonly entry$ = this.select(x => x.entry);
   public readonly likes$ = this.select(x => x.likes);
 
+  public addComment = this.effect((comment$: Observable<string>) =>
+    comment$.pipe(
+      concatLatestFrom(() => [this.currentUser$, this.entry$]),
+      mergeMap(([comment, currentUser, entry]) =>
+        currentUser && entry
+          ? this.service.addComment(entry.id, comment, currentUser.id).pipe(
+              tapResponse(
+                _ => this.loadComments(entry.id),
+                (error: HttpErrorResponse) => console.log(error)
+              )
+            )
+          : EMPTY
+      )
+    )
+  );
+
   public loadComments = this.effect((id$: Observable<number | undefined>) =>
     id$.pipe(
       filter(Boolean),

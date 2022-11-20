@@ -7,7 +7,7 @@ import { BlogComment, BlogEntry, BlogLike, BlogPreview, User } from '../model';
 
 @Injectable({ providedIn: 'root' })
 export class BlogsService {
-  private baseUrl = 'https://blogsapi.azurewebsites.net/Blogs'
+  private baseUrl = 'https://blogsapi.azurewebsites.net/Blogs';
 
   constructor(private http: HttpClient) {}
 
@@ -20,7 +20,6 @@ export class BlogsService {
   }
 
   public loadBlogComments(blogId: number): Observable<BlogComment[]> {
-    return of(comments);
     return this.http.get<BlogComment[]>(
       `${this.baseUrl}/blogs/${blogId}/comments`
     );
