@@ -1,5 +1,9 @@
-<section fxLayout="column" fxLayoutGap="8px">
-  <ng-container *ngIf="entry$ | async as entry">
+<section
+  fxLayout="column"
+  fxLayoutGap="8px"
+  *ngIf="entry$ | async as entry; else loading"
+>
+  <ng-container>
     <h1>{{ entry.title }}</h1>
     <span class="grey">
       Posted by {{ entry.username }} at
@@ -21,3 +25,7 @@
   >
   </app-comments>
 </section>
+
+<ng-template #loading>
+  <div fxFlex fxLayoutAlign="center center"><mat-spinner></mat-spinner></div>
+</ng-template>
