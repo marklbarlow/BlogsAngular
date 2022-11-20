@@ -6,10 +6,18 @@
       {{ entry.timestamp | date: 'h:mm:ss a on dd/MM/yyyy' }}
     </span>
 
-    <quill-view [content]="entry.text"></quill-view>
+    <div [innerHTML]="entry.text"></div>
   </ng-container>
 
-  <app-likes [likes]="(likes$ | async)!"></app-likes>
+  <app-likes
+    [currentUser]="(currentUser$ | async)!"
+    [likes]="(likes$ | async)!"
+    (likeToggled)="onLikeToggled()"
+  ></app-likes>
 
-  <app-comments [comments]="(comments$ | async)!"> </app-comments>
+  <app-comments
+    [comments]="(comments$ | async)!"
+    (commentAdded)="onCommentAdded($event)"
+  >
+  </app-comments>
 </section>

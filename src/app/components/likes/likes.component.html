@@ -1,4 +1,6 @@
 <div fxLayout="row" fxLayoutGap="8px" *ngIf="likes">
-  <mat-icon fontSet="material-icons-outlined">thumb_up</mat-icon>
-  <span>{{ likes.length }}</span>
+  <mat-icon class="like" [fontSet]="getFontSet()" (click)="onLikeToggled()"
+    >thumb_up</mat-icon
+  >
+  <span class="counter" [matTooltip]="getTooltip()">{{ likes.length }}</span>
 </div>

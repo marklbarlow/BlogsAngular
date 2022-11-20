@@ -11,6 +11,7 @@ import { BlogStore } from './blog.store';
 })
 export class ViewBlogComponent implements OnInit {
   public comments$ = this.store.comments$;
+  public currentUser$ = this.store.currentUser$;
   public entry$ = this.store.entry$;
   public likes$ = this.store.likes$;
 
@@ -18,5 +19,13 @@ export class ViewBlogComponent implements OnInit {
 
   public ngOnInit(): void {
     this.store.initialise();
+  }
+
+  public onCommentAdded(text: string): void {
+    console.log('Added!', text);
+  }
+
+  public onLikeToggled(): void {
+    this.store.toggleLiked();
   }
 }

@@ -1,11 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
-import { Store } from '@ngrx/store';
+import { concatLatestFrom } from '@ngrx/effects';
+import { select, Store } from '@ngrx/store';
+import { includesUser } from 'app/helper.functions';
 import { BlogComment, BlogEntry, BlogLike } from 'app/model';
 import { BlogsService } from 'app/services';
-import { selectRouteParam, selectRouteParams } from 'app/store';
-import { filter, map, Observable, switchMap } from 'rxjs';
+import { selectRouteParam, selectSelectedUser } from 'app/store';
+import { EMPTY, filter, map, mergeMap, Observable, switchMap } from 'rxjs';
 
 interface BlogState {
   comments: BlogComment[];
@@ -16,26 +18,26 @@ interface BlogState {
 @Injectable()
 export class BlogStore extends ComponentStore<BlogState> {
   public readonly comments$ = this.select(x => x.comments);
+  public readonly currentUser$ = this.store.pipe(select(selectSelectedUser));
   public readonly entry$ = this.select(x => x.entry);
   public readonly likes$ = this.select(x => x.likes);
 
-  public loadComments = this.effect(
-    (trigger$: Observable<number | undefined>) =>
-      trigger$.pipe(
-        filter(Boolean),
-        switchMap(id =>
-          this.service.loadBlogComments(id).pipe(
-            tapResponse(
-              comments => this.patchState({ comments }),
-              (error: HttpErrorResponse) => console.log(error)
-            )
+  public loadComments = this.effect((id$: Observable<number | undefined>) =>
+    id$.pipe(
+      filter(Boolean),
+      switchMap(id =>
+        this.service.loadBlogComments(id).pipe(
+          tapResponse(
+            comments => this.patchState({ comments }),
+            (error: HttpErrorResponse) => console.log(error)
           )
         )
       )
+    )
   );
 
-  public loadEntry = this.effect((trigger$: Observable<number | undefined>) =>
-    trigger$.pipe(
+  public loadEntry = this.effect((id$: Observable<number | undefined>) =>
+    id$.pipe(
       filter(Boolean),
       switchMap(id =>
         this.service.loadBlogEntry(id).pipe(
@@ -48,8 +50,8 @@ export class BlogStore extends ComponentStore<BlogState> {
     )
   );
 
-  public loadLikes = this.effect((trigger$: Observable<number | undefined>) =>
-    trigger$.pipe(
+  public loadLikes = this.effect((id$: Observable<number | undefined>) =>
+    id$.pipe(
       filter(Boolean),
       switchMap(id =>
         this.service.loadBlogLikes(id).pipe(
@@ -58,6 +60,25 @@ export class BlogStore extends ComponentStore<BlogState> {
             (error: HttpErrorResponse) => console.log(error)
           )
         )
+      )
+    )
+  );
+
+  public toggleLiked = this.effect((trigger$: Observable<void>) =>
+    trigger$.pipe(
+      concatLatestFrom(() => [this.currentUser$, this.entry$, this.likes$]),
+      mergeMap(([_, currentUser, entry, likes]) =>
+        currentUser && entry
+          ? (includesUser(likes, currentUser)
+              ? this.service.removeLike(entry.id, currentUser.id)
+              : this.service.addLike(entry.id, currentUser.id)
+            ).pipe(
+              tapResponse(
+                _ => this.loadLikes(entry.id),
+                (error: HttpErrorResponse) => console.log(error)
+              )
+            )
+          : EMPTY
       )
     )
   );
@@ -75,9 +96,4 @@ export class BlogStore extends ComponentStore<BlogState> {
     this.loadEntry(routeParam$);
     this.loadLikes(routeParam$);
   }
-}
-function concatLatestFrom(
-  arg0: () => Observable<import('@angular/router').Params>
-): import('rxjs').OperatorFunction<void, unknown> {
-  throw new Error('Function not implemented.');
 }
