@@ -1,6 +1,6 @@
 import { BlogLike } from 'app/model';
 
 export const likes: BlogLike[] = [
-  { userId: 1, blogEntryId: 1 },
-  { userId: 2, blogEntryId: 2 },
+  { blogEntryId: 1, userId: 1, username: 'John Smith' },
+  { blogEntryId: 2, userId: 2, username: 'John Snow' },
 ];
