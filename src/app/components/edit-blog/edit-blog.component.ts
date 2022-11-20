@@ -1,7 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import Quill from 'quill';
+import BlotFormatter from 'quill-blot-formatter';
 
 import { EditBlogStore } from './edit-blog.store';
+
+Quill.register('modules/blotFormatter', BlotFormatter);
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14,6 +18,12 @@ export class EditBlogComponent {
   public formGroup: FormGroup;
   public editor = new FormControl<string>('', Validators.required);
   public title = new FormControl<string>('', Validators.required);
+
+  public modules = {
+    blotFormatter: {
+      // empty object for default behaviour.
+    },
+  };
 
   constructor(private store: EditBlogStore) {
     this.formGroup = new FormGroup({
