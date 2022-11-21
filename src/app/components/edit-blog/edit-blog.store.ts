@@ -8,7 +8,7 @@ import { BlogsService } from 'app/services';
 import { selectSelectedUser } from 'app/store';
 import { mergeMap, Observable } from 'rxjs';
 
-export interface BlogPost {
+interface BlogPost {
   content: string;
   title: string;
 }
