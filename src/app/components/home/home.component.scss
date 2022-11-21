@@ -1,3 +1,11 @@
-.mat-list-base .mat-list-item {
-  height: unset;
+:host {
+  height: 100%;
+}
+
+mat-card {
+  margin: 20px;
+}
+
+section {
+  height: 100%;
 }

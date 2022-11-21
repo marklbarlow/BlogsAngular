@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatCard } from '@angular/material/card';
 import { MatNavList } from '@angular/material/list';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MockComponent } from 'ng-mocks';
 
 import { HomeComponent } from './home.component';
@@ -14,7 +16,12 @@ describe('HomeComponent', () => {
     store = jasmine.createSpyObj('store', ['loadPreviews']);
 
     await TestBed.configureTestingModule({
-      declarations: [HomeComponent, MockComponent(MatNavList)],
+      declarations: [
+        HomeComponent,
+        MockComponent(MatCard),
+        MockComponent(MatNavList),
+        MockComponent(MatProgressSpinner),
+      ],
     })
       .overrideComponent(HomeComponent, {
         set: {

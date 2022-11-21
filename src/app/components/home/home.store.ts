@@ -6,7 +6,7 @@ import { BlogsService } from 'app/services';
 import { Observable, switchMap } from 'rxjs';
 
 interface HomeState {
-  previews: BlogPreview[];
+  previews?: BlogPreview[];
 }
 
 @Injectable()
@@ -27,6 +27,6 @@ export class HomeStore extends ComponentStore<HomeState> {
   );
 
   constructor(private service: BlogsService) {
-    super({ previews: [] });
+    super();
   }
 }
