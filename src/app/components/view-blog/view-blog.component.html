@@ -1,30 +1,78 @@
-<section
-  fxLayout="column"
-  fxLayoutGap="8px"
+<main
+  fxFlex
+  fxLayoutAlign="center start"
   *ngIf="entry$ | async as entry; else loading"
 >
-  <ng-container>
-    <h1>{{ entry.title }}</h1>
-    <span class="grey">
-      Posted by {{ entry.username }} at
-      {{ entry.timestamp | date: 'h:mm:ss a on dd/MM/yyyy' }}
+  <div fxLayout="column" fxFlex="0 1 800px" fxLayoutGap="16px">
+    <span class="date">
+      {{ entry.timestamp | date: 'fullDate' }}
     </span>
 
-    <div [innerHTML]="entry.text"></div>
-  </ng-container>
+    <h1>{{ entry.title }}</h1>
+    <div fxLayoutAlign="start center" fxLayoutGap="8px">
+      <mat-icon
+        ><svg
+          id="Layer_1"
+          style="enable-background: new 0 0 24 24"
+          version="1.1"
+          viewBox="0 0 24 24"
+          xml:space="preserve"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <style type="text/css">
+            .st0 {
+              fill: none;
+              stroke: #000000;
+              stroke-width: 1.6724;
+              stroke-linecap: round;
+              stroke-linejoin: round;
+              stroke-miterlimit: 10;
+            }
+            .st1 {
+              fill: none;
+              stroke: #000000;
+              stroke-width: 1.5;
+              stroke-linecap: round;
+              stroke-linejoin: round;
+              stroke-miterlimit: 10;
+            }
+            .st2 {
+              fill: none;
+              stroke: #000000;
+              stroke-width: 1.5;
+              stroke-linejoin: round;
+              stroke-miterlimit: 10;
+            }
+          </style>
+          <g>
+            <circle class="st1" cx="12" cy="12" r="11.3" />
+            <path
+              class="st1"
+              d="M12,14.9c-3.5,0-6.5,2-8,5c2,2.1,4.9,3.3,8,3.3s6-1.3,8-3.3C18.5,17,15.5,14.9,12,14.9z"
+            />
+            <circle class="st1" cx="12" cy="8.7" r="3.6" />
+          </g></svg></mat-icon>
+      <span> {{ entry.username }} </span>
+    </div>
 
-  <app-likes
-    [currentUser]="(currentUser$ | async)!"
-    [likes]="(likes$ | async)!"
-    (likeToggled)="onLikeToggled()"
-  ></app-likes>
+    <article>
+      <div [innerHTML]="entry.text"></div>
+    </article>
 
-  <app-comments
-    [comments]="(comments$ | async)!"
-    (commentAdded)="onCommentAdded($event)"
-  >
-  </app-comments>
-</section>
+    <app-likes
+      [currentUser]="(currentUser$ | async)!"
+      [likes]="(likes$ | async)!"
+      (likeToggled)="onLikeToggled()"
+    ></app-likes>
+
+    <app-comments
+      [comments]="(comments$ | async)!"
+      (commentAdded)="onCommentAdded($event)"
+    >
+    </app-comments>
+  </div>
+</main>
 
 <ng-template #loading>
   <div fxFlex fxLayoutAlign="center center"><mat-spinner></mat-spinner></div>
