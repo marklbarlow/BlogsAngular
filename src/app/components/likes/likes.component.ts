@@ -26,7 +26,9 @@ export class LikesComponent {
   }
 
   public getTooltip(): string {
-    return `Liked by ${this.likes.map(x => x.username).join(', ')}`;
+    return this.likes.length > 0
+      ? `Liked by ${this.likes.map(x => x.username).join(', ')}`
+      : '';
   }
 
   public onLikeToggled(): void {

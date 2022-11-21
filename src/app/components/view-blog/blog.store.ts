@@ -4,7 +4,7 @@ import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { concatLatestFrom } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { includesUser } from 'app/helper.functions';
-import { BlogComment, BlogEntry, BlogLike } from 'app/model';
+import { BlogComment, BlogEntry, BlogLike, User } from 'app/model';
 import { BlogsService } from 'app/services';
 import { selectRouteParam, selectSelectedUser } from 'app/store';
 import { EMPTY, filter, map, mergeMap, Observable, switchMap } from 'rxjs';
@@ -86,8 +86,8 @@ export class BlogStore extends ComponentStore<BlogState> {
       mergeMap(([_, currentUser, entry, likes]) =>
         currentUser && entry
           ? (includesUser(likes, currentUser)
-              ? this.service.removeLike(entry.id, currentUser.id)
-              : this.service.addLike(entry.id, currentUser.id)
+              ? this.removeLike(entry, currentUser)
+              : this.addLike(entry, currentUser)
             ).pipe(
               tapResponse(
                 _ => this.loadLikes(entry.id),
@@ -111,5 +111,24 @@ export class BlogStore extends ComponentStore<BlogState> {
     this.loadComments(routeParam$);
     this.loadEntry(routeParam$);
     this.loadLikes(routeParam$);
+  }
+
+  private addLike(entry: BlogEntry, user: User): Observable<BlogEntry> {
+    this.patchState(state => ({
+      likes: [
+        ...state.likes,
+        { blogEntryId: entry.id, userId: user.id, username: user.name },
+      ],
+    }));
+
+    return this.service.addLike(entry.id, user.id);
+  }
+
+  private removeLike(entry: BlogEntry, user: User): Observable<BlogEntry> {
+    this.patchState(state => ({
+      likes: state.likes.filter(x => x.userId !== user.id),
+    }));
+
+    return this.service.removeLike(entry.id, user.id);
   }
 }
