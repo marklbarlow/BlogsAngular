@@ -17,13 +17,24 @@ import { BlogComment } from 'app/model';
 export class CommentsComponent {
   @Input() public comments: BlogComment[] = [];
   @Output() public readonly commentAdded = new EventEmitter<string>();
-  public comment = new FormControl<string>('', Validators.required);
+  public comment = new FormControl<string>('');
+
+  public getTitle(comments: BlogComment[]): string {
+    if (comments.length === 0) {
+      return 'No comments';
+    } else if (comments.length === 1) {
+      return '1 comment';
+    }
+
+    return `${comments.length} comments`;
+  }
 
   public onAddComment(text: string | null): void {
     if (text) {
       this.commentAdded.emit(text);
-      this.comment.reset();
     }
+
+    this.comment.reset();
   }
 
   public trackComments(_: number, comment: BlogComment): number {

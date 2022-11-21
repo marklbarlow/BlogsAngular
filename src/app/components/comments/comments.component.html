@@ -1,35 +1,35 @@
-<div *ngIf="comments" fxLayoutGap="8px">
-  <h3>Comments</h3>
+<div fxFlex fxLayout="column" fxLayoutGap="8px">
   <div fxLayout="column" fxLayoutGap="8px">
-    <div
-      fxLayout="column"
-      *ngFor="let comment of comments; trackBy: trackComments"
-    >
-      <span>{{ comment.text }}</span>
-      <small fxLayout="row" class="grey">
-        by {{ comment.username }} at
-        {{ comment.timestamp | date: 'h:mm:ss a on dd/MM/yyyy' }}
-      </small>
+    <h4>{{ getTitle(comments) }}</h4>
+    <div *ngIf="comments.length > 0" fxLayout="column" fxLayoutGap="8px">
+      <div
+        fxLayout="column"
+        *ngFor="let comment of comments; trackBy: trackComments"
+      >
+        <div class="comment" fxLayout="column">
+          <span class="user">{{ comment.username }}</span>
+          <span>{{ comment.text }}</span>
+        </div>
+
+        <small class="indent">
+          <span class="date">
+            {{ comment.timestamp | date: 'longDate' }} at
+            {{ comment.timestamp | date: 'shortTime' }}
+          </span>
+        </small>
+      </div>
     </div>
   </div>
-  <div fxLayoutAlign="start end" fxLayoutGap="8px">
-    <mat-form-field fxFlex="300px">
-      <textarea
-        matInput
-        cdkTextareaAutosize
-        cdkAutosizeMinRows="1"
-        cdkAutosizeMaxRows="5"
-        placeholder="Enter comment..."
-        [formControl]="comment"
-      ></textarea>
-    </mat-form-field>
-    <button
-      mat-raised-button
-      color="accent"
-      [disabled]="comment.invalid"
-      (click)="onAddComment(comment.value)"
-    >
-      Add Comment
-    </button>
-  </div>
+  <mat-form-field fxFlex="0 1 500px" floatLabel="never">
+    <textarea
+      #commentInput
+      matInput
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5"
+      placeholder="Add a comment"
+      (keydown.enter)="onAddComment(commentInput.value.trim()); (false)"
+      [formControl]="comment"
+    ></textarea>
+  </mat-form-field>
 </div>
