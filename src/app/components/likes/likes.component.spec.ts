@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MockComponent, MockDirective } from 'ng-mocks';
 
 import { LikesComponent } from './likes.component';
 
@@ -8,9 +11,12 @@ describe('LikesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LikesComponent ]
-    })
-    .compileComponents();
+      declarations: [
+        LikesComponent,
+        MockComponent(MatIcon),
+        MockDirective(MatTooltip),
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LikesComponent);
     component = fixture.componentInstance;

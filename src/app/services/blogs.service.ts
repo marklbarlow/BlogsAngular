@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { comments, likes } from 'testing';
+import { Observable } from 'rxjs';
 
 import { BlogComment, BlogEntry, BlogLike, BlogPreview, User } from '../model';
 
