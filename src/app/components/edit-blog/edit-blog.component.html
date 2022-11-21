@@ -1,25 +1,31 @@
-<section fxFlex fxLayout="column" fxLayoutGap="8px">
-  <h1>Create Blog Post</h1>
+<main fxFlex fxLayoutAlign="center start">
+  <div fxLayout="column" fxFlex="0 1 800px" fxLayoutGap="16px">
+    <h1>Create Blog Post</h1>
 
-  <mat-form-field>
-    <mat-label>Title</mat-label>
-    <input matInput placeholder="Enter your blog title" [formControl]="title" />
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        placeholder="Enter your blog title"
+        [formControl]="title"
+      />
+    </mat-form-field>
 
-  <quill-editor
-    [styles]="{ height: '300px' }"
-    [formControl]="editor"
-    [modules]="modules"
-  ></quill-editor>
+    <quill-editor
+      [styles]="{ height: '300px' }"
+      [formControl]="editor"
+      [modules]="modules"
+    ></quill-editor>
 
-  <div fxLayoutAlign="end center">
-    <button
-      mat-raised-button
-      color="accent"
-      [disabled]="formGroup.invalid"
-      (click)="onSave()"
-    >
-      Save
-    </button>
+    <div fxLayoutAlign="end center">
+      <button
+        mat-raised-button
+        color="accent"
+        [disabled]="formGroup.invalid"
+        (click)="onSave()"
+      >
+        Save
+      </button>
+    </div>
   </div>
-</section>
+</main>
