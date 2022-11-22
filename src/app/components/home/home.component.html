@@ -16,7 +16,7 @@
           <mat-card-title>{{ preview.title }}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <p>This card has divider and indeterminate progress as footer</p>
+          <div [innerHTML]="preview.text"></div>
         </mat-card-content>
         <mat-card-actions>
           <a
