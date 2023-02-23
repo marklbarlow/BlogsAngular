@@ -1,36 +1,29 @@
-<main
-  fxFlex
-  fxLayoutAlign="center start"
-  *ngIf="previews$ | async as previews; else loading"
->
-  <section fxLayout="column" fxFlex="0 1 800px">
-    <cdk-virtual-scroll-viewport fxFlex itemSize="50">
-      <mat-card
-        class="mat-elevation-z8"
-        *cdkVirtualFor="let preview of previews; trackBy: trackPreviews"
-      >
-        <mat-card-header>
-          <mat-card-subtitle>{{
-            preview.timestamp | date: 'longDate'
-          }}</mat-card-subtitle>
-          <mat-card-title>{{ preview.title }}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <div [innerHTML]="preview.text"></div>
-        </mat-card-content>
-        <mat-card-actions>
-          <a
-            mat-button
-            color="primary"
-            [routerLink]="['/view-blog', preview.id]"
-            >READ MORE ></a
-          >
-        </mat-card-actions>
-      </mat-card>
-    </cdk-virtual-scroll-viewport>
-  </section>
+<main class="flex h-full" *ngIf="previews$ | async as previews; else loading">
+  <cdk-virtual-scroll-viewport class="w-full" itemSize="50">
+    <mat-card
+      class="mat-elevation-z8 m-5"
+      *cdkVirtualFor="let preview of previews; trackBy: trackPreviews"
+    >
+      <mat-card-header>
+        <mat-card-subtitle>{{
+          preview.timestamp | date: 'longDate'
+        }}</mat-card-subtitle>
+        <mat-card-title>{{ preview.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="prose prose-sm max-w-none" [innerHTML]="preview.text"></div>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-button color="primary" [routerLink]="['/view-blog', preview.id]"
+          >READ MORE ></a
+        >
+      </mat-card-actions>
+    </mat-card>
+  </cdk-virtual-scroll-viewport>
 </main>
 
 <ng-template #loading>
-  <div fxFlex fxLayoutAlign="center center"><mat-spinner></mat-spinner></div>
+  <div class="flex h-full justify-center items-center">
+    <mat-spinner></mat-spinner>
+  </div>
 </ng-template>

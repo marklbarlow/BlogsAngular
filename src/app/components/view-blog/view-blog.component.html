@@ -1,15 +1,14 @@
 <main
-  fxFlex
-  fxLayoutAlign="center start"
+  class="flex flex-col items-center mt-8"
   *ngIf="entry$ | async as entry; else loading"
 >
-  <div fxLayout="column" fxFlex="0 1 800px" fxLayoutGap="16px">
+  <div class="flex flex-col gap-4 w-full">
     <span class="date">
       {{ entry.timestamp | date: 'fullDate' }}
     </span>
 
-    <h1>{{ entry.title }}</h1>
-    <div fxLayoutAlign="start center" fxLayoutGap="8px">
+    <h1 class="text-4xl">{{ entry.title }}</h1>
+    <div class="flex flex-row items-center gap-2">
       <mat-icon
         ><svg
           id="Layer_1"
@@ -57,7 +56,7 @@
       <span> {{ entry.username }} </span>
     </div>
 
-    <article>
+    <article class="prose prose-lg max-w-none prose-img:mx-auto">
       <div [innerHTML]="entry.text"></div>
     </article>
 
@@ -76,5 +75,7 @@
 </main>
 
 <ng-template #loading>
-  <div fxFlex fxLayoutAlign="center center"><mat-spinner></mat-spinner></div>
+  <div class="flex h-full items-center justify-center">
+    <mat-spinner></mat-spinner>
+  </div>
 </ng-template>

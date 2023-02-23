@@ -1,10 +1,10 @@
-<div fxFlex fxLayout="column">
-  <mat-toolbar color="primary" fxLayoutGap="8px">
+<div class="flex flex-col h-full">
+  <mat-toolbar color="primary" class="gap-2">
     <span class="home" [routerLink]="['/']">Blog</span>
     <button mat-raised-button color="accent" [routerLink]="['/edit-blog']">
       Create Blog Entry
     </button>
-    <span fxFlex></span>
+    <span class="flex-auto"></span>
     <span>Impersonating user:</span>
     <mat-form-field>
       <mat-select [formControl]="selectedUser">
@@ -54,7 +54,7 @@
     ></a>
   </mat-toolbar>
 
-  <div fxFlex class="content-host mat-typography">
-    <router-outlet fxFill></router-outlet>
+  <div class="flex flex-col h-full container mx-auto max-w-4xl mat-typography">
+    <router-outlet></router-outlet>
   </div>
 </div>
