@@ -9,18 +9,18 @@ import {
 } from './components';
 
 const routes: Routes = [
-  { path: '', title: 'Home', component: HomeComponent },
+  { path: '', title: 'Blog - Home', component: HomeComponent },
   {
     path: 'view-blog/:id',
-    title: 'View Blog Entry',
+    title: 'Blog - View Blog Entry',
     component: ViewBlogComponent,
   },
   {
     path: 'edit-blog',
-    title: 'Entry Blog Entry',
+    title: 'Blog - Edit Blog Entry',
     component: EditBlogComponent,
   },
-  { path: '**', title: 'Page Not Found', component: PageNotFoundComponent },
+  { path: '**', title: 'Blog - Page Not Found', component: PageNotFoundComponent },
 ];
 
 @NgModule({
