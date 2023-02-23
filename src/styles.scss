@@ -3,10 +3,9 @@
 html,
 body {
   height: 100%;
-}
-body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+  --mdc-typography-button-text-transform: uppercase;
 }
 
 @include mat.core();
@@ -24,7 +23,7 @@ $my-theme: mat.define-light-theme(
   )
 );
 
-@include mat.all-legacy-component-themes($my-theme);
+@include mat.all-component-themes($my-theme);
 
 @import '~quill/dist/quill.bubble.css';
 @import '@material-design-icons/font';
@@ -35,8 +34,4 @@ $my-theme: mat.define-light-theme(
 
 .mat-card-header-text {
   margin: 0px !important;
-}
-
-button {
-  text-transform: uppercase;
 }

@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatLegacyProgressSpinner as MatProgressSpinner } from '@angular/material/legacy-progress-spinner';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MockComponent } from 'ng-mocks';
 
-import { ViewBlogStore } from './view-blog.store';
 import { ViewBlogComponent } from './view-blog.component';
+import { ViewBlogStore } from './view-blog.store';
 
 describe('ViewBlogComponent', () => {
   let component: ViewBlogComponent;

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatLegacyCard as MatCard } from '@angular/material/legacy-card';
-import { MatLegacyNavList as MatNavList } from '@angular/material/legacy-list';
-import { MatLegacyProgressSpinner as MatProgressSpinner } from '@angular/material/legacy-progress-spinner';
+import { MatCard } from '@angular/material/card';
+import { MatNavList } from '@angular/material/list';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MockComponent } from 'ng-mocks';
 import { previews } from 'testing';
 

@@ -6,7 +6,7 @@
     </button>
     <span fxFlex></span>
     <span>Impersonating user:</span>
-    <mat-form-field appearance="fill">
+    <mat-form-field>
       <mat-select [formControl]="selectedUser">
         <mat-option
           *ngFor="let user of availableUsers$ | async; trackBy: trackUsers"
