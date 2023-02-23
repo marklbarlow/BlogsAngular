@@ -2,13 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MockComponent } from 'ng-mocks';
 
-import { BlogStore } from './blog.store';
+import { ViewBlogStore } from './view-blog.store';
 import { ViewBlogComponent } from './view-blog.component';
 
 describe('ViewBlogComponent', () => {
   let component: ViewBlogComponent;
   let fixture: ComponentFixture<ViewBlogComponent>;
-  let store: jasmine.SpyObj<BlogStore>;
+  let store: jasmine.SpyObj<ViewBlogStore>;
 
   beforeEach(async () => {
     store = jasmine.createSpyObj('store', [
@@ -25,7 +25,7 @@ describe('ViewBlogComponent', () => {
     })
       .overrideComponent(ViewBlogComponent, {
         set: {
-          providers: [{ provide: BlogStore, useValue: store }],
+          providers: [{ provide: ViewBlogStore, useValue: store }],
         },
       })
       .compileComponents();
@@ -37,5 +37,20 @@ describe('ViewBlogComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('onCommentAdded()', () => {
+    it('adds the comment', () => {
+      const comment = 'This is a comment';
+      component.onCommentAdded(comment);
+      expect(store.addComment).toHaveBeenCalledWith(comment);
+    });
+  });
+
+  describe('onLikeToggled()', () => {
+    it('toggles the liked', () => {
+      component.onLikeToggled();
+      expect(store.toggleLiked).toHaveBeenCalled();
+    });
   });
 });

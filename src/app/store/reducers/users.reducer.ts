@@ -16,10 +16,6 @@ const userReducer = createReducer(
   initialState,
   on(UserActions.loadUsers, _ => initialState),
   on(
-    UserActions.loadUsersFailure,
-    (state, { error }): UserState => ({ ...state })
-  ),
-  on(
     UserActions.loadUsersSuccess,
     (state, { users }): UserState => ({
       ...state,

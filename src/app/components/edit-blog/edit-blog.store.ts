@@ -6,32 +6,37 @@ import { concatLatestFrom } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { BlogsService } from 'app/services';
 import { selectSelectedUser } from 'app/store';
-import { mergeMap, Observable } from 'rxjs';
-
-interface BlogPost {
-  content: string;
-  title: string;
-}
+import { EMPTY, mergeMap, Observable } from 'rxjs';
 
 @Injectable()
 export class EditBlogStore extends ComponentStore<{}> {
-  private save = this.effect((post$: Observable<BlogPost>) =>
-    post$.pipe(
-      concatLatestFrom(() => this.store.pipe(select(selectSelectedUser))),
-      mergeMap(([post, user]) =>
-        this.service
-          .saveBlogEntry(post.title, post.content, user?.id ?? 1)
-          .pipe(
-            tapResponse(
-              _ => {
-                console.log(`Blog post ${post.title} saved succesfully`);
-                this.router.navigate(['/']);
-              },
-              (error: HttpErrorResponse) => console.log(error)
-            )
-          )
+  private save = this.effect(
+    (
+      post$: Observable<{
+        content: string;
+        title: string;
+      }>
+    ) =>
+      post$.pipe(
+        concatLatestFrom(() => this.store.pipe(select(selectSelectedUser))),
+        mergeMap(([post, user]) =>
+          user
+            ? this.service
+                .saveBlogEntry(post.title, post.content, user.id)
+                .pipe(
+                  tapResponse(
+                    _ => {
+                      console.log(
+                        `Blog post '${post.title}' saved succesfully`
+                      );
+                      this.router.navigate(['/']);
+                    },
+                    (error: HttpErrorResponse) => console.error(error)
+                  )
+                )
+            : EMPTY
+        )
       )
-    )
   );
 
   constructor(
@@ -39,7 +44,7 @@ export class EditBlogStore extends ComponentStore<{}> {
     private service: BlogsService,
     private store: Store
   ) {
-    super();
+    super({});
   }
 
   public saveBlogEntry(title: string, content: string): void {

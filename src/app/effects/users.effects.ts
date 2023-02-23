@@ -11,10 +11,8 @@ export class UsersEffects {
       ofType(UserActions.loadUsers.type),
       mergeMap(() =>
         this.service.loadUsers().pipe(
-          map(
-            users => UserActions.loadUsersSuccess({ users }),
-            catchError(() => EMPTY)
-          )
+          map(users => UserActions.loadUsersSuccess({ users })),
+          catchError(() => EMPTY)
         )
       )
     )

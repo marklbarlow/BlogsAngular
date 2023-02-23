@@ -16,10 +16,10 @@ export class HomeStore extends ComponentStore<HomeState> {
   public loadPreviews = this.effect((trigger$: Observable<void>) =>
     trigger$.pipe(
       switchMap(_ =>
-        this.service.loadBlogPreviews().pipe(
+        this.service.loadBlogPreviews(5).pipe(
           tapResponse(
             previews => this.setState({ previews }),
-            (error: HttpErrorResponse) => console.log(error)
+            (error: HttpErrorResponse) => console.error(error)
           )
         )
       )
@@ -27,6 +27,6 @@ export class HomeStore extends ComponentStore<HomeState> {
   );
 
   constructor(private service: BlogsService) {
-    super();
+    super({});
   }
 }

@@ -16,7 +16,7 @@ interface BlogState {
 }
 
 @Injectable()
-export class BlogStore extends ComponentStore<BlogState> {
+export class ViewBlogStore extends ComponentStore<BlogState> {
   public readonly comments$ = this.select(x => x.comments);
   public readonly currentUser$ = this.store.pipe(select(selectSelectedUser));
   public readonly entry$ = this.select(x => x.entry);
@@ -113,7 +113,7 @@ export class BlogStore extends ComponentStore<BlogState> {
     this.loadLikes(routeParam$);
   }
 
-  private addLike(entry: BlogEntry, user: User): Observable<BlogEntry> {
+  private addLike(entry: BlogEntry, user: User): Observable<void> {
     this.patchState(state => ({
       likes: [
         ...state.likes,
@@ -124,7 +124,7 @@ export class BlogStore extends ComponentStore<BlogState> {
     return this.service.addLike(entry.id, user.id);
   }
 
-  private removeLike(entry: BlogEntry, user: User): Observable<BlogEntry> {
+  private removeLike(entry: BlogEntry, user: User): Observable<void> {
     this.patchState(state => ({
       likes: state.likes.filter(x => x.userId !== user.id),
     }));

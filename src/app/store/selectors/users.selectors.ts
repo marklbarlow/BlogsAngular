@@ -2,7 +2,7 @@ import { createSelector } from '@ngrx/store';
 
 import { State } from '../reducers';
 
-const selectUserState = (state: State) => state.users;
+export const selectUserState = (state: State) => state.users;
 
 export const selectAvailableUsers = createSelector(
   selectUserState,

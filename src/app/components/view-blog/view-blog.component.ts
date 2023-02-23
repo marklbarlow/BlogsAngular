@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { BlogStore } from './blog.store';
+import { ViewBlogStore } from './view-blog.store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [BlogStore],
+  providers: [ViewBlogStore],
   selector: 'app-view-blog',
   templateUrl: './view-blog.component.html',
   styleUrls: ['./view-blog.component.scss'],
@@ -15,7 +15,7 @@ export class ViewBlogComponent implements OnInit {
   public entry$ = this.store.entry$;
   public likes$ = this.store.likes$;
 
-  constructor(private store: BlogStore) {}
+  constructor(private store: ViewBlogStore) {}
 
   public ngOnInit(): void {
     this.store.initialise();

@@ -13,4 +13,3 @@ export const reducers: ActionReducerMap<State> = {
 };
 
 export const routerFeatureKey = 'router';
-

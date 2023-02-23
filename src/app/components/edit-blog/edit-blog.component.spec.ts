@@ -13,7 +13,7 @@ describe('EditBlogComponent', () => {
   let store: jasmine.SpyObj<EditBlogStore>;
 
   beforeEach(async () => {
-    store = jasmine.createSpyObj('store', ['save']);
+    store = jasmine.createSpyObj('store', ['saveBlogEntry']);
 
     await TestBed.configureTestingModule({
       declarations: [
@@ -37,5 +37,18 @@ describe('EditBlogComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('onSave()', () => {
+    it('save the blog entry', () => {
+      const entry = 'This is the blog entry';
+      const title = 'This is the title';
+      component.editor.setValue(entry);
+      component.title.setValue(title);
+
+      component.onSave();
+
+      expect(store.saveBlogEntry).toHaveBeenCalledWith(title, entry);
+    });
   });
 });
