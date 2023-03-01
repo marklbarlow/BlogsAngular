@@ -1,24 +1,12 @@
-<main class="flex h-full" *ngIf="previews$ | async as previews; else loading">
+<main
+  class="flex h-full mt-8"
+  *ngIf="previews$ | async as previews; else loading"
+>
   <cdk-virtual-scroll-viewport class="w-full" itemSize="50">
-    <mat-card
-      class="mat-elevation-z8 m-5"
+    <app-card
       *cdkVirtualFor="let preview of previews; trackBy: trackPreviews"
-    >
-      <mat-card-header>
-        <mat-card-subtitle>{{
-          preview.timestamp | date: 'longDate'
-        }}</mat-card-subtitle>
-        <mat-card-title>{{ preview.title }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="prose prose-sm max-w-none" [innerHTML]="preview.text"></div>
-      </mat-card-content>
-      <mat-card-actions>
-        <a mat-button color="primary" [routerLink]="['/view-blog', preview.id]"
-          >READ MORE ></a
-        >
-      </mat-card-actions>
-    </mat-card>
+      [preview]="preview"
+    ></app-card>
   </cdk-virtual-scroll-viewport>
 </main>
 

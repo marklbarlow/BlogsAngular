@@ -23,10 +23,12 @@ import { QuillModule } from 'ngx-quill';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
+  CardComponent,
   CommentsComponent,
   EditBlogComponent,
   HomeComponent,
   LikesComponent,
+  NavBarComponent,
   PageNotFoundComponent,
   ViewBlogComponent,
 } from './components';
@@ -36,19 +38,20 @@ import { reducers } from './store';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    ViewBlogComponent,
-    EditBlogComponent,
-    PageNotFoundComponent,
+    CardComponent,
     CommentsComponent,
+    EditBlogComponent,
+    HomeComponent,
     LikesComponent,
+    NavBarComponent,
+    ViewBlogComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-
     MatButtonModule,
     MatCardModule,
     MatCommonModule,
