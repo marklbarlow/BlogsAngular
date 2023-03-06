@@ -3,7 +3,7 @@
   *ngIf="entry$ | async as entry; else loading"
 >
   <div class="flex flex-col gap-4 w-full">
-    <span class="date">
+    <span class="text-stone-500">
       {{ entry.timestamp | date: 'fullDate' }}
     </span>
 

@@ -31,11 +31,3 @@ $my-theme: mat.define-light-theme(
 
 @import '~quill/dist/quill.bubble.css';
 @import '@material-design-icons/font';
-
-.date {
-  color: rgba(35, 28, 51, 0.66);
-}
-
-.mat-card-header-text {
-  margin: 0px !important;
-}
