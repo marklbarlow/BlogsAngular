@@ -1,24 +1,30 @@
 <div
   class="flex flex-row items-center gap-2 px-4 backdrop-blur border-b border-slate-900/10"
 >
-  <span class="cursor-pointer" [routerLink]="['/']">Blog</span>
-  <button mat-raised-button color="accent" [routerLink]="['/edit-blog']">
+  <a class="text-xl font-mono text-decoration-none" [routerLink]="['/']">
+    Blog
+  </a>
+
+  <button class="btn btn-blue" type="button" [routerLink]="['/edit-blog']">
     Create Blog Entry
   </button>
   <span class="flex-auto"></span>
   <span>Impersonating user:</span>
-  <mat-form-field>
-    <mat-select [formControl]="selectedUser">
-      <mat-option
-        *ngFor="let user of availableUsers; trackBy: trackUsers"
-        [value]="user"
-      >
-        {{ user.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
 
-  <a
+  <select
+    class="form-select rounded-md border-gray-300 shadow-sm"
+    [formControl]="selectedUser"
+    placeholder="User"
+  >
+    <option
+      *ngFor="let user of availableUsers; trackBy: trackUsers"
+      [value]="user"
+    >
+      {{ user.name }}
+    </option>
+  </select>
+
+  <!-- <a
     mat-icon-button
     href="https://github.com/marklbarlow/BlogsAngular"
     title="GitHub"
@@ -52,5 +58,5 @@
       class="mat-ripple mat-button-ripple mat-button-ripple-round"
     ></span
     ><span class="mat-button-focus-overlay"></span
-  ></a>
+  ></a> -->
 </div>

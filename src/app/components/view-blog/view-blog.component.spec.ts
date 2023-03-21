@@ -1,6 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { MockComponent } from 'ng-mocks';
 
 import { ViewBlogComponent } from './view-blog.component';
 import { ViewBlogStore } from './view-blog.store';
@@ -21,7 +19,7 @@ describe('ViewBlogComponent', () => {
     ]);
 
     await TestBed.configureTestingModule({
-      declarations: [ViewBlogComponent, MockComponent(MatProgressSpinner)],
+      declarations: [ViewBlogComponent],
     })
       .overrideComponent(ViewBlogComponent, {
         set: {

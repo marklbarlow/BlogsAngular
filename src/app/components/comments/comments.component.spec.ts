@@ -1,8 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormField } from '@angular/material/form-field';
 import { BlogComment } from 'app/model';
-import { MockComponent } from 'ng-mocks';
 import { comments } from 'testing';
 
 import { CommentsComponent } from './comments.component';
@@ -13,7 +11,7 @@ describe('CommentsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CommentsComponent, MockComponent(MatFormField)],
+      declarations: [CommentsComponent],
       imports: [ReactiveFormsModule],
     }).compileComponents();
 

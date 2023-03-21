@@ -1,10 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormField } from '@angular/material/form-field';
-import { MatIcon } from '@angular/material/icon';
-import { MatSelect } from '@angular/material/select';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MockComponent } from 'ng-mocks';
 import { users } from 'testing';
 
 import { NavBarComponent } from './nav-bar.component';
@@ -15,12 +11,7 @@ describe('NavBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        NavBarComponent,
-        MockComponent(MatFormField),
-        MockComponent(MatIcon),
-        MockComponent(MatSelect),
-      ],
+      declarations: [NavBarComponent],
       imports: [ReactiveFormsModule, RouterTestingModule],
     }).compileComponents();
 

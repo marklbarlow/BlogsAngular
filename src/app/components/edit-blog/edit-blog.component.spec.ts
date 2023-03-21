@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { MockComponent, MockDirective } from 'ng-mocks';
+import { MockComponent } from 'ng-mocks';
 import { QuillEditorComponent } from 'ngx-quill';
 
 import { EditBlogComponent } from './edit-blog.component';
@@ -16,11 +15,7 @@ describe('EditBlogComponent', () => {
     store = jasmine.createSpyObj('store', ['saveBlogEntry']);
 
     await TestBed.configureTestingModule({
-      declarations: [
-        EditBlogComponent,
-        MockDirective(MatLabel),
-        MockComponent(MatFormField),
-      ],
+      declarations: [EditBlogComponent],
       imports: [MockComponent(QuillEditorComponent), ReactiveFormsModule],
     })
       .overrideComponent(EditBlogComponent, {

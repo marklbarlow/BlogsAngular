@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Store } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
@@ -18,11 +17,7 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, RouterTestingModule],
-      declarations: [
-        AppComponent,
-        MockComponent(NavBarComponent),
-        MockComponent(MatProgressSpinner),
-      ],
+      declarations: [AppComponent, MockComponent(NavBarComponent)],
       providers: [provideMockStore()],
     }).compileComponents();
 

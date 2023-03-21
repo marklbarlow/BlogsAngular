@@ -1,6 +1,13 @@
 <div class="flex gap-2" *ngIf="likes">
-  <mat-icon class="cursor-pointer" [fontSet]="getFontSet()" (click)="onLikeToggled()"
-    >thumb_up</mat-icon
+  <button
+    type="button"
+    class="cursor-pointer"
+    [ngClass]="getFontSet()"
+    (click)="onLikeToggled()"
   >
-  <span class="mt-1" [matTooltip]="getTooltip()">{{ likes.length }}</span>
+    thumb_up
+  </button>
+  <div [title]="getTooltip()">
+    <span class="mt-1">{{ likes.length }}</span>
+  </div>
 </div>

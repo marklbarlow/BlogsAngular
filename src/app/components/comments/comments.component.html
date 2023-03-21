@@ -18,16 +18,13 @@
       </small>
     </div>
   </div>
-  <mat-form-field>
-    <textarea
-      #commentInput
-      matInput
-      cdkTextareaAutosize
-      cdkAutosizeMinRows="1"
-      cdkAutosizeMaxRows="5"
-      placeholder="Add a comment"
-      (keydown.enter)="onAddComment(commentInput.value.trim()); (false)"
-      [formControl]="comment"
-    ></textarea>
-  </mat-form-field>
+
+  <textarea
+    #commentInput
+    class="form-textarea rounded-md border-gray-300 shadow-sm resize-none"
+    rows="{2}"
+    (keydown.enter)="onAddComment(commentInput.value.trim()); (false)"
+    [formControl]="comment"
+    placeholder="Add a comment"
+  ></textarea>
 </div>
