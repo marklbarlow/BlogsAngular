@@ -42,6 +42,10 @@ export class NavBarComponent extends OnDestroy$ implements OnChanges, OnInit {
     }
   }
 
+  public navigate(path: string): void {
+    window.location.href = path;
+  }
+
   public ngOnInit(): void {
     this.selectedUser.valueChanges
       .pipe(takeUntilDestroyed(this), filter(Boolean))
