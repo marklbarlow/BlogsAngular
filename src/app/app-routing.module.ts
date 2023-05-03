@@ -20,7 +20,11 @@ const routes: Routes = [
     title: 'Blog - Edit Blog Entry',
     component: EditBlogComponent,
   },
-  { path: '**', title: 'Blog - Page Not Found', component: PageNotFoundComponent },
+  {
+    path: '**',
+    title: 'Blog - Page Not Found',
+    component: PageNotFoundComponent,
+  },
 ];
 
 @NgModule({
