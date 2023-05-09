@@ -1,3 +1,1 @@
-import * as UserActions from './users.actions';
-
-export { UserActions };
+export * from './users.actions';
