@@ -1,19 +1,13 @@
-import { createAction, props } from '@ngrx/store';
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { User } from 'app/model';
 
-export const loadUsers = createAction('[Users] Load Users');
-
-export const loadUsersSuccess = createAction(
-  '[Users] Load Users Success',
-  props<{ users: User[] }>()
-);
-
-export const loadUsersFailure = createAction(
-  '[Users] Load Users Failure',
-  props<{ error: Error }>()
-);
-
-export const selectUser = createAction(
-  '[Users] Select User',
-  props<{ user: User }>()
-);
+export const { loadUsers, loadUsersFailure, loadUsersSuccess, selectUser } =
+  createActionGroup({
+    events: {
+      'Load Users': emptyProps(),
+      'Load Users Failure': props<{ error: Error }>(),
+      'Load Users Success': props<{ users: User[] }>(),
+      'Select User': props<{ user: User }>(),
+    },
+    source: 'Users',
+  });
