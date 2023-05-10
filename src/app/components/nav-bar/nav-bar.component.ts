@@ -8,11 +8,8 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, Validators } from '@angular/forms';
-import {
-  OnDestroy$,
-  takeUntilDestroyed,
-} from '@pdtec/ngx-observable-lifecycle';
 import { User } from 'app/model';
 import { filter } from 'rxjs';
 
@@ -22,7 +19,7 @@ import { filter } from 'rxjs';
   styleUrls: ['./nav-bar.component.scss'],
   templateUrl: './nav-bar.component.html',
 })
-export class NavBarComponent extends OnDestroy$ implements OnChanges, OnInit {
+export class NavBarComponent implements OnChanges, OnInit {
   @Input() public availableUsers: User[] = [];
   @Input() public currentlySelectedUser?: User;
   @Output() public readonly userSelected = new EventEmitter<User>();
@@ -31,10 +28,6 @@ export class NavBarComponent extends OnDestroy$ implements OnChanges, OnInit {
     undefined,
     Validators.required
   );
-
-  constructor() {
-    super();
-  }
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['currentlySelectedUser']) {
@@ -48,7 +41,7 @@ export class NavBarComponent extends OnDestroy$ implements OnChanges, OnInit {
 
   public ngOnInit(): void {
     this.selectedUser.valueChanges
-      .pipe(takeUntilDestroyed(this), filter(Boolean))
+      .pipe(takeUntilDestroyed(), filter(Boolean))
       .subscribe(user => this.userSelected.emit(user));
   }
 
