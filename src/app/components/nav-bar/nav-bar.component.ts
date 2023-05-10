@@ -4,7 +4,6 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -19,7 +18,7 @@ import { filter } from 'rxjs';
   styleUrls: ['./nav-bar.component.scss'],
   templateUrl: './nav-bar.component.html',
 })
-export class NavBarComponent implements OnChanges, OnInit {
+export class NavBarComponent implements OnChanges {
   @Input() public availableUsers: User[] = [];
   @Input() public currentlySelectedUser?: User;
   @Output() public readonly userSelected = new EventEmitter<User>();
@@ -29,6 +28,12 @@ export class NavBarComponent implements OnChanges, OnInit {
     Validators.required
   );
 
+  constructor() {
+    this.selectedUser.valueChanges
+      .pipe(takeUntilDestroyed(), filter(Boolean))
+      .subscribe(user => this.userSelected.emit(user));
+  }
+
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['currentlySelectedUser']) {
       this.selectedUser.setValue(changes['currentlySelectedUser'].currentValue);
@@ -37,12 +42,6 @@ export class NavBarComponent implements OnChanges, OnInit {
 
   public navigate(path: string): void {
     window.location.href = path;
-  }
-
-  public ngOnInit(): void {
-    this.selectedUser.valueChanges
-      .pipe(takeUntilDestroyed(), filter(Boolean))
-      .subscribe(user => this.userSelected.emit(user));
   }
 
   public trackUsers(_: number, user: User): number {
