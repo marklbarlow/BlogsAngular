@@ -19,8 +19,8 @@ import { filter } from 'rxjs';
   templateUrl: './nav-bar.component.html',
 })
 export class NavBarComponent implements OnChanges {
-  @Input() public availableUsers: User[] = [];
-  @Input() public currentlySelectedUser?: User;
+  @Input({ required: true }) public availableUsers: User[] = [];
+  @Input({ required: true }) public currentlySelectedUser?: User;
   @Output() public readonly userSelected = new EventEmitter<User>();
 
   public selectedUser = new FormControl<User | undefined>(

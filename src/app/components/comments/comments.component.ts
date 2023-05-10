@@ -15,7 +15,7 @@ import { BlogComment } from 'app/model';
   styleUrls: ['./comments.component.scss'],
 })
 export class CommentsComponent {
-  @Input() public comments: BlogComment[] = [];
+  @Input({ required: true }) public comments: BlogComment[] = [];
   @Output() public readonly commentAdded = new EventEmitter<string>();
   public comment = new FormControl<string>('');
 

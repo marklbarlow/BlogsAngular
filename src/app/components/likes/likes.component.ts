@@ -15,8 +15,8 @@ import { BlogLike, User } from 'app/model';
   styleUrls: ['./likes.component.scss'],
 })
 export class LikesComponent {
-  @Input() public likes: BlogLike[] = [];
-  @Input() public currentUser?: User;
+  @Input({ required: true }) public likes: BlogLike[] = [];
+  @Input({ required: true }) public currentUser?: User;
   @Output() public readonly likeToggled = new EventEmitter();
 
   public getFontSet(): string {

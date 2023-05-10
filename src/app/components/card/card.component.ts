@@ -8,5 +8,5 @@ import { BlogPreview } from 'app/model';
   templateUrl: './card.component.html',
 })
 export class CardComponent {
-  @Input() public preview?: BlogPreview;
+  @Input({ required: true }) public preview?: BlogPreview;
 }
